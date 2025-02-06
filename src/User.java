@@ -1,7 +1,12 @@
 public abstract class User {
-    String userId;
+    private String userId;
     private String Name;
     private String contactInfo;
+    private int totalUser;
+
+    public String getUserId() {
+        return userId;
+    }
 
     public String getName() {
         return Name;
@@ -24,17 +29,23 @@ public abstract class User {
         this.userId = generateUniqId();
     }
 
+
+
     public User(String contactInfo, String name) {
+        this.userId = generateUniqId();
         this.contactInfo = contactInfo;
         Name = name;
     }
     public User(User c){
         Name = c.Name;
         contactInfo = c.contactInfo;
+        this.userId = generateUniqId();
     }
-    public String generateUniqId(){
-        return "0";
+    public final String generateUniqId(){
+        totalUser++;
+        return "user-"+totalUser;
     }
     public abstract void displayDashboard();
     public abstract boolean canBorrowBooks();
+    public abstract void returnBook();
 }
